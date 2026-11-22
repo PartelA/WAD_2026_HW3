@@ -11,7 +11,8 @@ export default createStore({
         "date" : "2024-04-13",
         "author" : "Jonas Betterman",
         "content" : "On a vacation in Seattle! Hoping to see you guys soon",
-        "picture_source" : "https://picsum.photos/seed/tartu1/600/400"
+        "picture_source" : "https://picsum.photos/seed/tartu1/600/400",
+        "likes" : 0
     },
     {
         "id" : 2,
@@ -19,7 +20,8 @@ export default createStore({
         "date" : "2024-04-15",
         "author" : "Liis Kask",
         "content" : "The campus is so peaceful before the first lectures begin.",
-        "picture_source" : "https://picsum.photos/seed/campus-morning/600/400"
+        "picture_source" : "https://picsum.photos/seed/campus-morning/600/400",
+        "likes" : 0
     },
     {
         "id" : 3,
@@ -27,7 +29,8 @@ export default createStore({
         "date" : "2024-04-17",
         "author" : "Martin Saar",
         "content" : "Found a new favorite coffee spot near the library. Their cinnamon rolls are excellent.",
-        "picture_source" : "https://picsum.photos/seed/coffee-break/600/400"
+        "picture_source" : "https://picsum.photos/seed/coffee-break/600/400",
+        "likes" : 0
     },
     {
         "id" : 4,
@@ -35,7 +38,8 @@ export default createStore({
         "date" : "2024-04-19",
         "author" : "Kaisa Tamm",
         "content" : "A few of us are reviewing the web development assignment in the study room at 6. Feel free to join!",
-        "picture_source" : "https://picsum.photos/seed/study-group/600/400"
+        "picture_source" : "https://picsum.photos/seed/study-group/600/400",
+        "likes" : 0
     },
     {
         "id" : 5,
@@ -43,7 +47,8 @@ export default createStore({
         "date" : "2024-04-22",
         "author" : "Rasmus Pärn",
         "content" : "Took the long way home today just to enjoy the sunshine and the first green leaves.",
-        "picture_source" : "https://picsum.photos/seed/spring-walk/600/400"
+        "picture_source" : "https://picsum.photos/seed/spring-walk/600/400",
+        "likes" : 0
     },
     {
         "id" : 6,
@@ -51,7 +56,8 @@ export default createStore({
         "date" : "2024-04-24",
         "author" : "Grete Lepp",
         "content" : "Our team got the first version of the course project working today. It feels great to see it come together!",
-        "picture_source" : "https://picsum.photos/seed/project-update/600/400"
+        "picture_source" : "https://picsum.photos/seed/project-update/600/400",
+        "likes" : 0
     },
     {
         "id" : 7,
@@ -59,7 +65,8 @@ export default createStore({
         "date" : "2024-04-26",
         "author" : "Andres Kivi",
         "content" : "If you are looking for a quick lunch, the soup at the student café is worth trying.",
-        "picture_source" : "https://picsum.photos/seed/student-lunch/600/400"
+        "picture_source" : "https://picsum.photos/seed/student-lunch/600/400",
+        "likes" : 0
     },
     {
         "id" : 8,
@@ -67,7 +74,8 @@ export default createStore({
         "date" : "2024-04-28",
         "author" : "Maarja Oja",
         "content" : "Taking a break from screens and spending the afternoon with a good book.",
-        "picture_source" : "https://picsum.photos/seed/weekend-reading/600/400"
+        "picture_source" : "https://picsum.photos/seed/weekend-reading/600/400",
+        "likes" : 0
     },
     {
         "id" : 9,
@@ -75,7 +83,8 @@ export default createStore({
         "date" : "2024-05-01",
         "author" : "Joonas Hallik",
         "content" : "Anyone up for a casual badminton game at the sports hall this week? I can bring an extra racket.",
-        "picture_source" : "https://picsum.photos/seed/badminton/600/400"
+        "picture_source" : "https://picsum.photos/seed/badminton/600/400",
+        "likes" : 0
     },
     {
         "id" : 10,
@@ -83,7 +92,8 @@ export default createStore({
         "date" : "2024-05-03",
         "author" : "Anu Rebane",
         "content" : "The river looked beautiful at sunset tonight. A perfect end to a busy week.",
-        "picture_source" : "https://picsum.photos/seed/river-sunset/600/400"
+        "picture_source" : "https://picsum.photos/seed/river-sunset/600/400",
+        "likes" : 0
     },
     {
         "id" : 11,
@@ -91,7 +101,8 @@ export default createStore({
         "date" : "2024-05-05",
         "author" : "Peeter Mänd",
         "content" : "Wrapping up my notes and getting ready for the final stretch of the semester. Good luck, everyone!",
-        "picture_source" : "https://picsum.photos/seed/semester-finish/600/400"
+        "picture_source" : "https://picsum.photos/seed/semester-finish/600/400",
+        "likes" : 0
     }
 ]
     },
@@ -99,7 +110,19 @@ export default createStore({
         
     },
     mutations: {
-        
+        incrementLikes(state, postId) {
+            const post = state.postList.find(post => post.id === postId);
+
+            if (post) {
+                post.likes++;
+            }
+        },
+
+        resetLikes(state) {
+            state.postList.forEach(post => {
+                post.likes = 0;
+            });
+        }
     },
     actions: {
         
