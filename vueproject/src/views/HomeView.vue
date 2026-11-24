@@ -1,21 +1,25 @@
 
 <template>
     <div class="HomeView">
-        <h1>This is the home view</h1>
+        <div class="side"></div>
 
-        <PostItem
-            v-for="post in postList"
-            :key="post.id"
-            :post="post"
-        />
+        <div class="posts">
+            <PostItem
+                v-for="post in postList"
+                :key="post.id"
+                :post="post"
+            />
 
-        <button
-            class="reset-button"
-            type="button"
-            @click="resetLikes"
-        >
-            Reset likes
-        </button>
+            <button
+                class="reset-button"
+                type="button"
+                @click="resetLikes"
+            >
+                Reset likes
+            </button>
+        </div>
+
+        <div class="side"></div>
     </div>
 </template>
 
@@ -43,13 +47,24 @@ export default {
 <style scoped>
 .HomeView {
     display: flex;
-    flex-direction: column;
-    align-items: center;
     gap: 12px;
-    padding: 12px;
+}
+
+.side {
+    flex: 1;
+    background-color: #d1d1d1;
+    border-radius: 12px;
+}
+
+.posts {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 }
 
 .reset-button {
+    align-self: center;
     background-color: #8db5e8;
     color: black;
     border: none;

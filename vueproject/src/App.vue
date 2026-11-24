@@ -18,5 +18,18 @@ export default {
 </script>
 
 <style>
+body {
+  margin: 0;
+  font-family: "Courier New", Courier, monospace;
+  background-color: white;
+}
 
+#app {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
 </style>

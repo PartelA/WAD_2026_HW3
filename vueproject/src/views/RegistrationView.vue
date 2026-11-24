@@ -24,6 +24,11 @@
                 >
             </div>
 
+            <div v-if="errors.length > 0" class="error">
+                <p>The password is not valid -</p>
+                <p v-for="error in errors" :key="error">{{ error }}</p>
+            </div>
+
             <button type="submit">Signup</button>
         </form>
     </div>
@@ -35,12 +40,40 @@ export default {
     data() {
         return {
             email: "",
-            password: ""
+            password: "",
+            errors: []
         }
     },
     methods: {
         submitForm() {
-            // Signup functionality can be added here.
+            const p = this.password;
+            this.errors = [];
+
+            // Checks every rule and saves the ones that failed
+            if (p.length < 8 || p.length >= 15) {
+                this.errors.push("Should be at least 8 and less than 15 characters long");
+            }
+            if (!/[A-Z]/.test(p)) {
+                this.errors.push("Includes at least one uppercase alphabet character");
+            }
+            // Counts lowercase letters by removing everything else
+            if (p.replace(/[^a-z]/g, "").length < 2) {
+                this.errors.push("Includes at least two lowercase alphabet characters");
+            }
+            if (!/[0-9]/.test(p)) {
+                this.errors.push("Includes at least one numeric value");
+            }
+            if (!/^[A-Z]/.test(p)) {
+                this.errors.push("Should start with an uppercase letter");
+            }
+            if (!p.includes("_")) {
+                this.errors.push('Should include the character "_"');
+            }
+
+            // Goes to the home page when the password is valid
+            if (this.errors.length === 0) {
+                this.$router.push("/");
+            }
         }
     }
 }
@@ -99,5 +132,15 @@ export default {
 
 .signup-form button:hover {
     background-color: #70a2e0;
+}
+
+.error {
+    width: 100%;
+    color: #c0392b;
+    font-size: 13px;
+}
+
+.error p {
+    margin: 2px 0;
 }
 </style>

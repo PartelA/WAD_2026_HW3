@@ -13,14 +13,17 @@
             <img :src="post.picture_source" :alt="post.title">
             <p class="post-content">{{ post.content }}</p>
 
-            <button
-                class="like"
-                type="button"
-                aria-label="Like"
-                @click="likePost"
-            >
-                👍 {{ post.likes }}
-            </button>
+            <div class="post-footer">
+                <button
+                    class="like"
+                    type="button"
+                    aria-label="Like"
+                    @click="likePost"
+                >
+                    👍
+                </button>
+                <span>{{ post.likes }} likes</span>
+            </div>
         </article>
     </div>
 </template>
@@ -42,7 +45,7 @@ export default {
 <style scoped>
 /* ---------- Posts ---------- */
 .post {
-    background: #d5dbe3;
+    background: #e0e0e0;
     border-radius: 8px;
     padding: 12px;
 }
@@ -63,6 +66,19 @@ export default {
 
 .author-name {
     font-weight: bold;
+}
+
+.avatar {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: #9ca3af;
+}
+
+.post-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .post h2 {
